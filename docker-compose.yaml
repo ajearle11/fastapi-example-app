@@ -1,4 +1,15 @@
 services:
+  api:
+    build: ./api 
+    container_name: fastapi-app
+    restart: unless-stopped
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgresql+asyncpg://user:mypassword@db:5432/fastapidb
+    ports:
+      - "8000:8000"
+
   db:
     image: postgres:18.1
     container_name: fast-api-example

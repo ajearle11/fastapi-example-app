@@ -4,8 +4,9 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker
 )
 from sqlalchemy.orm import declarative_base
+import os
 
-DATABASE_URL = "postgresql+asyncpg://user:mypassword@localhost:5432/fastapidb"
+DATABASE_URL = os.getenv("DATABASE_URL")
 
 engine = create_async_engine(
     DATABASE_URL,

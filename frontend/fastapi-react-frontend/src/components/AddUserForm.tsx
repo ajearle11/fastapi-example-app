@@ -1,0 +1,91 @@
+import { useEffect, useState } from "react";
+import { workOutAge } from "../utils/helpers";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import apiFetch from "../utils/api/apiClient";
+import type { TUser } from "../types";
+import LoadingSpinner from "./LoadingSpinner";
+
+const AddUserForm = () => {
+  const queryClient = useQueryClient();
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [age, setAge] = useState<number>(0);
+  const [date, setDate] = useState<string>("");
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    const calculatedAge = workOutAge(date);
+    setAge(calculatedAge);
+  }, [date]);
+
+  const { mutate, isPending, isError, isSuccess } = useMutation({
+    mutationFn: (newUser: Omit<TUser, "id">) =>
+      apiFetch<TUser>("/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newUser),
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+
+  useEffect(() => {
+    if (isSuccess) {
+      setShowSuccess(true);
+      const timer = setTimeout(() => setShowSuccess(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
+  const handleCreate = () => {
+    mutate({ firstName, lastName, age, dateOfBirth: date });
+  };
+
+  return (
+    <div className="flex flex-col gap-2 py-10 w-[100%] justify-items-center items-center">
+      <p className="card-title">Add a User</p>
+      <input
+        type="text"
+        className="input validator"
+        required
+        placeholder="First name"
+        pattern="[A-Za-z][A-Za-z0-9\-]*"
+        onChange={(e) => setFirstName(e.target.value)}
+        value={firstName}
+        maxLength={30}
+        title="Only letters, numbers or dash"
+      />
+      <input
+        type="text"
+        className="input validator"
+        required
+        onChange={(e) => setLastName(e.target.value)}
+        value={lastName}
+        placeholder="Last name"
+        pattern="[A-Za-z][A-Za-z0-9\-]*"
+        maxLength={30}
+        title="Only letters, numbers or dash"
+      />
+      <input
+        type="date"
+        className="input"
+        onChange={(e) => setDate(e.target.value)}
+      />
+      <input
+        type="number"
+        className="input validator"
+        disabled
+        value={age}
+        placeholder="Age"
+      />
+      <button onClick={handleCreate} className="btn btn-primary">
+        {isPending ? <LoadingSpinner /> : "Submit"}
+      </button>
+      {isError && <p>Error creating user: Try again!</p>}
+      {showSuccess && <p>User Created!</p>}
+    </div>
+  );
+};
+
+export default AddUserForm;
