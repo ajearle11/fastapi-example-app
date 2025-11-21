@@ -1,6 +1,6 @@
 # fastapi-example-app
 
-I would not normally push straight to main, but I decided for the sake of time it would make it easier to do it like this! I would normally use gitflow and leverage versioning in the pipeline!
+I would not normally push straight to main, but I decided for the sake of time it would make it easier to do it like this! I would normally use gitflow and leverage versioning in the pipeline!d
 
 **Note**: I have done some CICD stuff in the past, so I could have utilised it here, but I don't think it is important for this project. I would normally use tools like sonatype repo to pull images , sonatype-IQ for SAST and container scanning. 
 
