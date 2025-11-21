@@ -1,5 +1,7 @@
 # fastapi-example-app
 
+**Note**: I have done some CICD stuff in the past, so I could have utilised it here, but I don't think it is important for this project.
+
 ## Frontend
 
 So I decided to use Vite for this project utilising TypeScript and the react compiler. I like to split the components, pages and utils apart to keep it clean. I also like to use an index.ts file so that imports come from one folder. React router is used for routing throughout the application.
