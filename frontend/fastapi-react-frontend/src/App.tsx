@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router";
-import { Homepage, IndividualUserPage, Layout } from "./pages";
+import { Homepage, IndividualUserPage, Layout, NotFound } from "./pages";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
           <Route index element={<Homepage />} />
           <Route path="users/:id" element={<IndividualUserPage />} />
         </Route>
+          <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

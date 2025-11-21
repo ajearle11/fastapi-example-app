@@ -8,7 +8,6 @@ def to_camel(string: str) -> str:
 class UserCreate(BaseModel):
     first_name: str = Field(..., alias="firstName")
     last_name: str = Field(None, alias="lastName")
-    age: int
     date_of_birth: date = Field(..., alias="dateOfBirth")
 
     model_config = ConfigDict(
@@ -18,3 +17,4 @@ class UserCreate(BaseModel):
 
 class UserRead(UserCreate):
     id: int
+    age: int

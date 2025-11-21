@@ -1,7 +1,7 @@
 
 const LoadingSpinner = () => {
   return (
-    <div>LoadingSpinner</div>
+    <span className="loading loading-dots loading-xl"></span>
   )
 }
 

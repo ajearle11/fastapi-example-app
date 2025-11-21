@@ -34,7 +34,6 @@ async def created_user():
         payload = {
             "first_name": "Test",
             "last_name": "User",
-            "age": 99,
             "date_of_birth": "1900-01-01",
         }
         response = await ac.post("/users", json=payload)
@@ -49,7 +48,6 @@ async def test_create_user():
         payload = {
             "first_name": "Alice",
             "last_name": "Smith",
-            "age": 30,
             "date_of_birth": "1995-01-02",
         }
         response = await ac.post("/users", json=payload)
@@ -57,10 +55,10 @@ async def test_create_user():
     assert response.status_code == 201
     data = response.json()
     assert data["id"] > 0
-    assert data["first_name"] == "Alice"
-    assert data["last_name"] == "Smith"
+    assert data["firstName"] == "Alice"
+    assert data["lastName"] == "Smith"
     assert data["age"] == 30
-    assert data["date_of_birth"] == "1995-01-02"
+    assert data["dateOfBirth"] == "1995-01-02"
 
 
 @pytest.mark.anyio
@@ -73,7 +71,7 @@ async def test_list_users(created_user):
     data = response.json()
     assert isinstance(data, list)
     assert len(data) >= 1
-    assert any(user["first_name"] == "Test" for user in data)
+    assert any(user["firstName"] == "Test" for user in data)
     assert any(user["id"] == created_user["id"] for user in data)
 
 
@@ -84,7 +82,6 @@ async def test_delete_user():
         payload = {
             "first_name": "Bob",
             "last_name": "Jones",
-            "age": 40,
             "date_of_birth": "1985-05-05",
         }
         create_resp = await ac.post("/users", json=payload)

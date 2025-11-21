@@ -1,6 +1,6 @@
 services:
   api:
-    build: ./api 
+    build: ./api
     container_name: fastapi-app
     restart: unless-stopped
     depends_on:
@@ -23,5 +23,12 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql
 
+  frontend:
+    build: ./frontend/fastapi-react-frontend
+    container_name: frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    
 volumes:
   pgdata:

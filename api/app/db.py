@@ -6,7 +6,10 @@ from sqlalchemy.ext.asyncio import (
 from sqlalchemy.orm import declarative_base
 import os
 
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "sqlite+aiosqlite:///./dev.db", 
+)
 
 engine = create_async_engine(
     DATABASE_URL,

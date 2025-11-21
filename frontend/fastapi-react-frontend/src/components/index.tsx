@@ -4,3 +4,5 @@ export { default as UserList } from "./UserList";
 export { default as UserCard } from "./UserCard";
 export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as AddUserForm } from "./AddUserForm";
+export { default as Alert } from "./Alert";
+export { default as Modal } from "./Modal";

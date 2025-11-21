@@ -2,6 +2,6 @@ export type TUser = {
     id?: number
     firstName: string
     lastName?: string
-    age: number
+    age?: number
     dateOfBirth: string
 }

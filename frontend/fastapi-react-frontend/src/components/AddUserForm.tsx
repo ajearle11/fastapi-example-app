@@ -12,6 +12,7 @@ const AddUserForm = () => {
   const [age, setAge] = useState<number>(0);
   const [date, setDate] = useState<string>("");
   const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     const calculatedAge = workOutAge(date);
@@ -33,13 +34,22 @@ const AddUserForm = () => {
   useEffect(() => {
     if (isSuccess) {
       setShowSuccess(true);
+      setDate("")
+      setFirstName("")
+      setLastName("")
+      setAge(0)
       const timer = setTimeout(() => setShowSuccess(false), 5000);
       return () => clearTimeout(timer);
     }
   }, [isSuccess]);
 
   const handleCreate = () => {
-    mutate({ firstName, lastName, age, dateOfBirth: date });
+    if (!date || !firstName || firstName.length > 30 || lastName.length > 30) {
+      setShowError(true)
+      return
+    }
+    setShowError(false)
+    mutate({ firstName, lastName, dateOfBirth: date });
   };
 
   return (
@@ -70,6 +80,7 @@ const AddUserForm = () => {
       <input
         type="date"
         className="input"
+        value={date}
         onChange={(e) => setDate(e.target.value)}
       />
       <input
@@ -79,11 +90,12 @@ const AddUserForm = () => {
         value={age}
         placeholder="Age"
       />
+      {showError && <p className="text-error">All fields must have a value and names can be no longer than 30 characters</p>}
       <button onClick={handleCreate} className="btn btn-primary">
         {isPending ? <LoadingSpinner /> : "Submit"}
       </button>
-      {isError && <p>Error creating user: Try again!</p>}
-      {showSuccess && <p>User Created!</p>}
+      {isError && <p className="text-error">Error creating user: Try again!</p>}
+      {showSuccess && <p className="text-success">User Created!</p>}
     </div>
   );
 };

@@ -8,6 +8,11 @@ async function apiFetch<T>(endpoint: string, options?: RequestInit): Promise<T> 
   if (!res.ok) {
     throw new Error(`Error: ${res.status}`);
   }
+
+  if (res.status === 204) {
+    return null as T;
+  }
+
   return res.json();
 }
 

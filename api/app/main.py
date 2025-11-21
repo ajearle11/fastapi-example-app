@@ -22,7 +22,7 @@ app = FastAPI(lifespan=lifespan)
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://frontend:5173"
+    "http://localhost:3000"
 ]
 
 app.add_middleware(
@@ -72,7 +72,6 @@ async def create_user(user_to_create: UserCreate, db = Depends(get_db)):
     user: User = User(
         first_name=user_to_create.first_name,
         last_name=user_to_create.last_name,
-        age=user_to_create.age,
         date_of_birth=user_to_create.date_of_birth,
     )
     db.add(user)

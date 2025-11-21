@@ -10,8 +10,17 @@ class User(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     first_name: Mapped[str] = mapped_column(String(30))
     last_name: Mapped[str] = mapped_column(String(30), nullable=True)
-    age: Mapped[int] = mapped_column(Integer)
     date_of_birth: Mapped[date] = mapped_column(Date)
+    
+    @property
+    def age(self) -> int:
+        today = date.today()
+        years = today.year - self.date_of_birth.year
+
+        if (today.month, today.day) < (self.date_of_birth.month, self.date_of_birth.day):
+            years -= 1
+
+        return years
 
     def __repr__(self) -> str:
         return (
