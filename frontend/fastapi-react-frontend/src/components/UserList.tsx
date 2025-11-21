@@ -3,12 +3,12 @@ import apiFetch from "../utils/api/apiClient";
 import { type TUser } from "../types";
 import LoadingSpinner from "./LoadingSpinner";
 import UserCard from "./UserCard";
-import { Fragment, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Alert from "./Alert";
 
 const UserList = () => {
   const queryClient = useQueryClient();
-  
+
   const [showSuccess, setShowSuccess] = useState(false);
   const [showError, setShowError] = useState(false);
 
@@ -45,17 +45,20 @@ const UserList = () => {
   if (error) return <p className="text-error">Error loading users</p>;
 
   return (
-    <Fragment data-testid="user-list">
+    <>
       {showSuccess && (
-        <Alert type="alert-success" text="Successfully deleted User"/>
+        <Alert type="alert-success" text="Successfully deleted User" />
       )}
-      {showError && (
-        <Alert type="alert-error" text="Failed to deleted User"/>
-      )}
+      {showError && <Alert type="alert-error" text="Failed to deleted User" />}
       {data?.map((item) => (
-        <UserCard key={item.id} user={item} mutate={mutate} isPending={isPending}  />
+        <UserCard
+          key={item.id}
+          user={item}
+          mutate={mutate}
+          isPending={isPending}
+        />
       ))}
-    </Fragment>
+    </>
   );
 };
 

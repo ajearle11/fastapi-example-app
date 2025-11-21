@@ -20,7 +20,7 @@ const AddUserForm = () => {
   }, [date]);
 
   const { mutate, isPending, isError, isSuccess } = useMutation({
-    mutationFn: (newUser: Omit<TUser, "id">) =>
+    mutationFn: (newUser: Omit<TUser, "id" | "age">) =>
       apiFetch<TUser>("/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -54,7 +54,7 @@ const AddUserForm = () => {
 
   return (
     <div className="flex flex-col gap-2 py-10 w-[100%] justify-items-center items-center">
-      <p className="card-title">Add a User</p>
+      <p className="card-title" data-testid="add-user-form">Add a User</p>
       <input
         type="text"
         className="input validator"
@@ -78,6 +78,7 @@ const AddUserForm = () => {
         title="Only letters, numbers or dash"
       />
       <input
+        data-testid="date-input"
         type="date"
         className="input"
         value={date}

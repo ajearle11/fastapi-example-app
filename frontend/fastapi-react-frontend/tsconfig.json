@@ -1,8 +1,12 @@
+/// <reference types="vitest/browser" />
+
 {
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" }
   ],
-  "types": ["vitest", "@testing-library/jest-dom"]
+  "compilerOptions": {
+    "types": ["vitest", "vitest/browser", "@testing-library/jest-dom"]
+  }
 }

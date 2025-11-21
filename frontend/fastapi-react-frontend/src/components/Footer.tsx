@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 w-full">
+    <footer data-testid="footer"  className="footer sm:footer-horizontal bg-neutral text-neutral-content p-10 w-full">
        <div className="w-[100%] max-w-[1500px] mx-auto">
         <aside>
           <svg

@@ -18,8 +18,7 @@ const Modal = ({mutate, setShowModal, user}: IModal) => {
         >
           ❌
         </button>
-
-        {/* Modal content */}
+        
         <h2 className="text-lg font-semibold mb-4">Delete User?</h2>
         <p className="mb-4">
           Are you sure that you want to delete {user.firstName}

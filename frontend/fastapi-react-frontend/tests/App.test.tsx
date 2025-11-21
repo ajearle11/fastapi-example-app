@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { screen } from "@testing-library/react";
 import App from "../src/App";
 import { renderWithProviders } from "./test-utils";
+/// <reference types="vitest/browser" />
 
 describe("App routing", () => {
   it("renders Homepage on /", () => {
