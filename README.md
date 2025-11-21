@@ -14,6 +14,8 @@ I also used DaisyUI and tailwind for components. The only issue with DaisyUI is 
 
 I haven't done much programming with FastAPI, but I have done a small amount with Python. I utilised my skills from working with .NET webapis and Express applications. This helped me to get a grasp of the main concepts much quicker with models and schemas (I guess I align this with classes and DTOs in .NET) and similarities with EF Core. Given I had more time, I would have used some sort of Migration based apporach. However, I also believe it is quite small as a project so in effect didn't need it. 
 
+I decided to do the age calculation based on the date provided rather than allow users to send the age data. I allowed CORS on certain addresses- I am treating it like dev for now! This would have better security had it been prod!
+
 If you go to an individual item page by clicking More... on a card item, you will see that it goes to what would be the page for that item. As you can see on the screen, I explain how it is out of scope with the rubric. I decided not to add it, but if I were to, I would have created another endpoint that was getUserById and then put that info on the page. I could also have utilised the .find method over the array and used that but it didn't feel like the right choice. Some extra checks for 404s would have to be done too!
 
 ## Testing
