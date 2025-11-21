@@ -1,6 +1,6 @@
 # fastapi-example-app
 
-**Note**: I have done some CICD stuff in the past, so I could have utilised it here, but I don't think it is important for this project.
+**Note**: I have done some CICD stuff in the past, so I could have utilised it here, but I don't think it is important for this project. I would normally use tools like sonatype repo, sonatype-IQ for SAST and container scanning. 
 
 ## Frontend
 
