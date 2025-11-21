@@ -20,7 +20,7 @@ I decided to add some testing to both projects. This is bare bones and just to s
 
 ## Docker and docker compose
 
-This is minimal, but I wanted to make it as easy as possible, and I am treating it like a dev environment. Given I had a production setting I would think about minimal images, hardened containers, and secret injection. I have utilised this in my work with Hashicorp Vault and some Kubernetes setup in other projects and I am happy to talk through some of the ways that I have achieved this. Either way, I would definitely have another approach. However, serving the frontend with nginx is the approach I would take into production. 
+This is minimal, but I wanted to make it as easy as possible, and I am treating it like a dev environment. Given I had a production setting I would think about minimal images, hardened containers, and secret injection. I have utilised this in my work with Hashicorp Vault and some Kubernetes setup in other projects and I am happy to talk through some of the ways that I have achieved this. Either way, I would definitely have another approach. However, serving the frontend with nginx is the approach I would take into production. I used the default bridge connection (rather than define it myself)!
 
 Any more questions, don't hesitate to bring it up!
 
